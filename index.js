@@ -25,13 +25,13 @@ io.on('connection', function(socket) {
 		});
 		// aplikacja emituje zdarzenie update, które aktualizuje informację na temat listy użytkowników każdemu nasłuchującemu na wydarzenie 'update
 		io.emit('update', {
-			users: userService.getAllusers()
+			users: userService.getAllUsers()
 		});
 	});
 	socket.on('disconnect', () => {
 		userService.removeUser(socket.id);
 		socket.broadcast.emit('update', {
-			users: userService.getAllusers()
+			users: userService.getAllUsers()
 		});
 	});
 	socket.on('message', function(message) {
